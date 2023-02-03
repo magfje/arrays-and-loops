@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        background-color: #497174;
+        color: #eff5f5;
+        font-family: "Courier New", Courier, monospace;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(3, 10rem);
+        grid-template-rows: repeat(3, 10rem);
+      }
+
+      .grid-item {
+        display: inherit;
+        border: 1px solid #d6e4e5;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+      }
+
+      .test:hover {
+        scale: 105%;
+        transition: 300ms ease-in-out;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Tallpuslespill</h1>
+    <div id="main"></div>
+  </body>
+
+  <script>
+    let numbers = [1, 3, 2, 5, 4, 7, null, 8, 6];
+    let winNumbers = [1, 2, 3, 4, 5, 6, 7, 8, null];
+    let clicks = "0";
+    let a, b, c, d;
+    let countText = "Count: ";
+    view();
+
+    function view() {
+      document.getElementById("main").innerHTML = `
+            <div class="grid-container" id="gridID"></div>
+            <h2 id="clickCount">${countText}${clicks}</h2>
+            `;
+      numView();
+    }
+
+    function numView() {
+      for (i = 0; i < numbers.length; i++) {
+        let newNum = document.createElement("div");
+        newNum.classList.add("grid-item");
+        newNum.id = "grid" + i;
+        newNum.innerHTML = numbers[i];
+        document.getElementById("gridID").appendChild(newNum);
+      }
+      addButtons();
+    }
+
+    function addButtons() {
+      isBlank = numbers.indexOf(null);
+      findButtons();
+      const divs = document.querySelectorAll(".grid-item");
+
+      for (let i = 0; i < divs.length; i++) {
+        if (i == a || i == b || i == c || i == d) {
+          divs[i].addEventListener("click", function () {
+            swapPos(i);
+          });
+          divs[i].style.backgroundColor = "#EB6440";
+          divs[i].classList.add("test");
+        }
+      }
+
+      checkWin();
+    }
+
+    function swapPos(swap) {
+      clicks++;
+      let temp = numbers[swap];
+      numbers[swap] = numbers[isBlank];
+      numbers[isBlank] = temp;
+      view();
+    }
+
+    function findButtons() {
+      (a = Number(isBlank) - 3),
+        (b = Number(isBlank) - 1),
+        (c = Number(isBlank) + 1),
+        (d = Number(isBlank) + 3);
+      if (isBlank == 3 || isBlank == 6) {
+        b = null;
+      } else if (isBlank == 5 || isBlank == 2) {
+        c = null;
+      }
+    }
+
+    function checkWin() {
+      if (numbers.join(",") === winNumbers.join(",")) {
+        document.getElementById("clickCount").style.backgroundColor = "#EB6440";
+        countText = `Won with: `;
+        return true;
+      } else {
+        return false;
+      }
+    }
+  </script>
+</html>
