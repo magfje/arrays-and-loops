@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vokaler</title>
+    <style></style>
+  </head>
+  <body>
+    <script>
+      let a = "are jens";
+      let aCounter = 0;
+      let bokstaver = "aeiouyæøå";
+
+      function vokaler() {
+        for (let i = 0; i < a.length; i++) {
+          if (bokstaver.includes(a.charAt(i))) {
+            aCounter++;
+          }
+          /* for (let i = 0; i <= a.length; i++) {
+            if(vokalerABC.includes(a.charAt(i))){
+                console.log('')
+                aCounter++ */
+        }
+        console.log(aCounter);
+      }
+
+      vokaler();
+    </script>
+
+    <!-- Lag en funksjon som teller opp antall vokaler i en string ved hjelp av en for-løkke
+Vokaler: a, e, i, o, u, y, æ, ø, å
+Bruk en variabel for hver av vokalene feks let aCounter  = 0 som plusses oppover dersom du finner bokstaven i tekststringen -->
+    <!-- a b c d e f g h i j k l m n o p q r s t u v w x y z æ ø å -->
+  </body>
+</html>

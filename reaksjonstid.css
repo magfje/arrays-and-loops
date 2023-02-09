@@ -1,0 +1,25 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  background-color: #333;
+}
+#main {
+  display: grid;
+  grid-template-columns: repeat(5, 10rem);
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+}
+
+.circleDiv {
+  width: 10rem;
+  height: 10rem;
+  /* background-color: aqua; */
+  border-radius: 50%;
+}
+
+.lightOn {
+  background-color: yellow;
+}
