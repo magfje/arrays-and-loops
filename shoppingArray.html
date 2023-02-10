@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shopping-Array</title>
+    <title>ShoppingArray</title>
   </head>
   <body>
     <div id="main"></div>
@@ -15,11 +15,15 @@
 
       function addToCart() {
         arr.push(itemValue);
-        let newListItem = document.createElement("li");
+        updateView();
+      }
+
+      function cartView() {
         for (i = 0; i < arr.length; i++) {
+          let newListItem = document.createElement("li");
           newListItem.textContent = arr[i];
+          document.getElementById("list").appendChild(newListItem);
         }
-        document.getElementById("list").appendChild(newListItem);
       }
 
       function updateView() {
@@ -29,6 +33,8 @@
           <input type="text" id="inputField" oninput="itemValue = this.value">
           <button id="button" onclick="addToCart()">Add to cart</button>
           `;
+
+        cartView();
       }
 
       updateView();
